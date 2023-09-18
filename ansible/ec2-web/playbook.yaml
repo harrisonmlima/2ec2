@@ -1,0 +1,36 @@
+- name: Instalação do docker
+  hosts: api
+  become: yes
+  tasks:
+    - name: Instalação de pre-requesitos do docker
+      apt:
+        name: ca-certificates, curl, gnupg, lsb-release
+        state: present
+        update_cache: yes
+
+    - name: Adicionando a chave do repositorio do docker
+      ansible.builtin.apt_key: 
+        url: https://download.docker.com/linux/debian/gpg
+        state: present
+
+    - name: Adicionando o repositorio do docker
+      ansible.builtin.apt_repository: 
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+
+    - name: Instalação do Docker
+      ansible.builtin.apt:
+        name: docker-ce, docker-ce-cli, containerd.io
+        state: present
+        update_cache: yes
+        
+        
+    - name: Dando permissão para o usuario docker
+      become: yes
+      ansible.builtin.command: usermod -aG docker $USER
+
+    - name: Executando container da api
+      become: yes
+      ansible.builtin.command: docker container run -dp 80:5000 -e MONGODB_HOST=
+      COLOCAR_IP_DO_EC2_DO_MONGODB_NO_MONGODB_HOST
+       -e MONGODB_USERNAME=mongouser -e MONGODB_PASSWORD=mongopwd harrisonlima/rotten-potatoes:v1
