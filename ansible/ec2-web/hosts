@@ -1,6 +1,0 @@
-[api]
-44.200.24.235
-
-[api:vars]
-ansible_ssh_private_key_file=~/.ssh/meukeypair.pem
-ansible_user=ubuntu
