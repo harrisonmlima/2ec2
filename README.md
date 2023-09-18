@@ -8,7 +8,7 @@ ssh -i ~/.ssh/meukeypair.pem ubuntu@IP_DA_MAQUINA_PUBLICA
 ## Tendo o acesso à maquina, você irá passar a chave de acesso do seu computador para a maquina publica, utilizando o comando:
 scp -i ~/.ssh/meukeypair.pem ~/.ssh/meukeypair.pem ubuntu@IP_DA_MAQUINA_PUBLICA:/home/ubuntu/.ssh/meukeypair.pem"
 ## Dentro da máquina publica, você irá acessar a máquina privada, visto que a máquina privada só está aberta para o ambiente interno, utilizando o comando (onde irá utilizar o ip privado):
-ssh -i ~/.ssh/meukeypair.pem ubuntu@IP_DA_MAQUINA_PUBLICA
+ssh -i ~/.ssh/meukeypair.pem ubuntu@IP_DA_MAQUINA_PRIVADA
 
 ##Comandos dentro da maquina privada EC2 (onde tem o banco de dados), para instalação do docker e rodar o docker com o banco de dados
 sudo apt-get update && sudo apt-get install ca-certificates curl gnupg
