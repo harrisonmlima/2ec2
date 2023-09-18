@@ -8,7 +8,8 @@ resource "aws_security_group" "web-sg" {
     protocol  = "tcp"
 
     cidr_blocks = [
-      "170.79.32.241/32", #meu ip
+      "111.111.111.111/32", #coloque o ip da sua máquina
+                            #put the ip of your machine
     ]
   }
   ingress {
